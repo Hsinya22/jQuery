@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#btnTry").click(function () {
+                // 在這裏寫程式
+                // 語法:$("selector").action(); 先定位在採取動作
+                // 改內容
+                // $("#report").text("ABC"); // id 為report的文字改為ABC
+                // var obj = $("#report").text("ABC");
+                // console.log(obj);
+
+                // 讀內容
+                // var s =  $("#report").text();
+                // alert(s); //提示字框顯示report:
+
+                // html()
+                // $("#report").text("Line1<br/>line2"); // 顯示純文字
+                // $("#report").html("Line1<br/>line2");
+                // var s =  $("#report").html();
+                // alert(s); //提示字框顯示report:<br/>
+
+                // prop()
+                // 讀取value
+                // var s = $("#aTextField").prop("value");
+                // alert(s);
+                // 更改value內容
+                // var s = $("#aTextField").prop("value", "123");
+                // .attr() 知道就好 比較不穩定 優先使用prop
+
+                // 既有內容不變，附加新內容上去，新增在後
+                // $("#report").append("line1<br>Line2<br>");
+                // 新內容加在前面 prepend
+                // $("#report").prepend("line1<br>Line2<br>");
+
+                // var s = $("#aTextField").prop("value");
+                // $("#report").append(s);               
+                
+                // 270
+                var s = $("input[name='radioGroup']").eq(2).attr("checked", "checked");
+                $("#report").append("radio C selected.");
+                // eq 等於 ==
+                
+            })
+        });
+    </script>
+</head>
+<body>
+
+
+<div id="report">Report:<br></div>
+
+<hr>
+
+<form action="" method="put" onsubmit="return false;">
+  <div>
+    <label>Text:</label> <input type="text" id="aTextField" name="someTextField"/>
+  </div>
+  <div>
+    <label>Radio group:</label>
+    <input type="radio" name="radioGroup" id="radioA" value="65"/> A
+    <input type="radio" name="radioGroup" id="radioB" value="66" checked="checked"/> B
+    <input type="radio" name="radioGroup" id="radioC" value="67"/> C
+  </div>
+  <div>
+    <label>Checkboxes:</label>
+    <input type="checkbox" name="checkboxes" id="checkbox1" value="1"/> 1
+    <input type="checkbox" name="checkboxes" id="checkbox2" value="2"/> 2
+    <input type="checkbox" name="checkboxes" id="checkbox3" value="3" checked="checked"/> 3
+    <input type="checkbox" name="checkboxes" id="checkbox4" value="4"/> 4
+  </div>
+  <button type="button" id="btnTry">Try</button>
+</form>
+</body>
+</html>

@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#btnTry").click(function () {
+                // 在這裏寫程式
+                // $("#report")
+                // .css("font-size","1.5em")
+                // .css("font-style","italic");
+                // JSON   {}物件 []陣列  , : ;
+                // $("#report").css({
+                //   "font-size":"3em",
+                //   "font-style":"italic"
+                // });
+                // 查詢目前的樣式字型大小
+                var s = $("#report").css("font-size");
+                alert(s);
+                
+                // 先引用CSS
+                // 增加類別
+                // $("#betaRibbon").addClass("beta-ribbon");
+
+                // 移除類別
+                // $("#betaRibbon").removeClass("beta-ribbon");
+                // 來回切換類別
+                // $("#betaRibbon").toggleClass("beta-ribbon");
+                // $("#betaRibbon").css("font-family", "Arial");
+                $("#betaRibbon").css({"font-family": "Arial", "font-size": "1.2em"});
+
+                
+                
+            })
+        });
+    </script>
+
+</head>
+<body>
+
+<div class="beta-ribbon-wrapper">
+  <div id="betaRibbon" class="oherClass">
+    <a href="/about/#beta">Beta</a>
+  </div>
+</div>
+
+<div id="report">Report:<br></div>
+<hr>
+<form action="" method="put" onsubmit="return false;">
+  <button type="button" id="btnTry">Try</button>
+</form>
+</body>
+</html>
