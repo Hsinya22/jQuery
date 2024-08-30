@@ -15,14 +15,14 @@ app.use( express.json() );
 app.use( express.urlencoded({extended: false}) );
 
 // 一切就緒，開始接受用戶端連線
-// app.listen(process.env.PORT);
-app.listen(80);
+// app.listen(process.env.PORT); =>>伺服器啟動
+app.listen(3000); //原本80 改3000 
 console.log("Web伺服器就緒，開始接受用戶端連線.");
 console.log("鍵盤「Ctrl + C」可結束伺服器程式.");
 
 // ---------------
 
-app.get("/hello/:text", function (request, response) {
+app.get("/hello/:text", function (request, response) { //request請求 response 回應
 	// 模擬程式三秒鐘延遲
 	var stop = new Date().getTime();
     while(new Date().getTime() < stop + 3000) {

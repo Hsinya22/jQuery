@@ -15,14 +15,14 @@ console.log("Web伺服器就緒，開始接受用戶端連線.");
 console.log("「Ctrl + C」可結束伺服器程式.");
 
 
-app.get("/todo/list", function (req, res) {
+app.get("/todo/list", function (req, res) { // 這份資料可以被前端資料撈出來
 	var data = fs.readFileSync(dataFileName);
 	var todoList = JSON.parse(data);
     res.set('Content-type', 'application/json');
 	res.send( JSON.stringify(todoList) );
 })
 
-app.get("/todo/item/:id", function (req, res) {
+app.get("/todo/item/:id", function (req, res) { // 找出單一筆代辦事項
 	var data = fs.readFileSync(dataFileName);
 	var todoList = JSON.parse(data);
 

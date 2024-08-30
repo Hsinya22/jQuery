@@ -12,11 +12,12 @@
             font-size: 1.25em;
         }
     </style>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 
 <body>
     <div class="container">
-        <h2>AJAX Lab</h2>
+        <h2>AJAX Lab 0830</h2>
         <ul class="nav nav-tabs">
             <li class="active"><a href="#conceptTab">Concept</a></li>
             <li><a href="#getTab">GET</a></li>
@@ -125,29 +126,91 @@
             });
 
 
-            $("#getButton").on("click", function() {
-                var s = $("#nameTextBox").val();
-
-
-
-
-
-                $("#reportSpan").text(s);
+            $("#getButton").on("click", async function() {  // 在步驟6，加入async
+                // var s = $("#nameTextBox").prop("value");
+                // var s = $("#nameTextBox").prop("value");
+                var s = $("#nameTextBox").val(); // 取得使用者輸入的值
+                var toWhere = `http://localhost:3000/hello/${s}`;
+                // $.get(toWhere,function(dataFromServer){
+                //     $("#reportSpan").text(dataFromServer); 
+                //     // $("#reportSpan").text("ok");  //測試:當獲得使用者輸入，顯示OK
+                // })
+                var response = await axios.get(toWhere);
+                $("#reportSpan").text(response.data,"-- ver 2.9"); // 資料是放在結果裡的data
             })
 
 
 
-            $("#postButton").on("click", function() {
+            // $("#postButton").on("click", function() {
+            //     var dataToServer = {
+            //         firstName: $("#firstNameTextBox").val(),
+            //         lastName: $("#lastNameTextBox").val()
+            //     }
+            //     // post寫法
+            //     // $.post("/test", dataToServer,function(dataFromServer){
+            //     //     $("#resultSpan").text(dataFromServer);
+            //     // })
+
+            //     // ajax寫法
+            //     $.ajax({
+            //         type:"post", //post, get , put , delete CRUD
+            //         // url:"http://localhost:3000/test",
+            //         url:"http://localhost:3000/test2", //test2 有prefix
+                    
+            //         // contentType:"application/json",
+            //         headers:{
+            //               "Content-type": "application/json",
+            //               "prefix": "Teacher"
+            //         },
+            //         data:JSON.stringify(dataToServer),
+            //         success:function(dataFromServer){
+            //             $("#resultSpan").text(dataFromServer + "-- ver2.5");
+            //         }
+            //     })
+            //     // $("#resultSpan").text(JSON.stringify(dataToServer));
+            // })
+            // ---5.8	參考答案(三)： await promiseObject---
+            // 加上 async 和 await
+            $("#postButton").on("click", async function() {
                 var dataToServer = {
                     firstName: $("#firstNameTextBox").val(),
                     lastName: $("#lastNameTextBox").val()
                 }
+                var result = await axios.post(
+                    "http://localhost:3000/test2",
+                    JSON.stringify(dataToServer),
+                    {
+                        headers:{
+                            "Content-type":"application/json",
+                            "prefix":"MR."
+                        }
+                    }
+                )
+                $("#resultSpan").text(result.data);
 
 
-
-
-                $("#resultSpan").text(JSON.stringify(dataToServer));
+                //--- 5.8作法 ---
+                // var result = await $.ajax({
+                //     type: "post",
+                //     url: "/test",
+                //     data: JSON.stringify(dataToServer),
+                //     contentType: "application/json"
+                // });
+                //也可這樣寫 差異只在多一個變數
+                // var p = $.ajax({
+                //     type: "post",
+                //     url: "/test",
+                //     data: JSON.stringify(dataToServer),
+                //     contentType: "application/json"
+                // });
+                // var result = await p;
+                // $("#resultSpan").text(result);
             })
+
+
+
+
+                
 
 
 
