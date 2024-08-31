@@ -35,35 +35,7 @@
 
 
 <script>
-    var todoTableId = sessionStorage.getItem("todoTableId") || 1;
-    var url = "/todo/item/" + todoTableId;
-    $.get(url, function (e) {
-        // var item = JSON.parse(e);
-        var item = e;
-        $("#Name").prop("value", item.title);
-        $("#IsComplete").prop("checked", (item.isComplete) ? "checked" : "" );
-    })
-
-    $("#okButton").on("click", async function () {
-
-        var dataToServer = {
-            todoTableId: todoTableId,
-            title: $("#Name").prop("value"),
-            isComplete: ($("#IsComplete").prop("checked")) ? 1 : 0
-        };
-
-        var result = await $.ajax({
-            type: "put",
-            url: "/todo/item",
-            contentType: "application/json",
-            data: JSON.stringify(dataToServer)
-        });
-
-        window.location = "/index.html";
-
-    })
-    
-    
+   
 </script>
 
 </div>

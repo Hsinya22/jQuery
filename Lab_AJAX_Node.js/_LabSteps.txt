@@ -1,6 +1,11 @@
 Lab: 練習使用 jQuery 的 AJAX 功能
 
+0 確認有沒有 node.js
+執行 node -v
 
+去node.js官網下載
+
+關閉VScode，再度開啟，在終端機輸入node -v =>看見版本號 =>安裝成功
 
 1.	設定與執行 Server 程式
 
@@ -28,14 +33,15 @@ node app.js
 
     <Note>
     Server 端會延遲三秒鐘才回應 Hello! 你的名字
-
-
+因為改了埠號app.listen(80) ->app.listen(3000) ，所以要寫:3000
+http://localhost:3000/hello/Chien
+當你更改了 app.js 要在終端機重新執行 node app.js
 
 
 2.	AJAX 觀念
 
 
-2.1	在瀏覽器連接 http://localhost/
+2.1	在瀏覽器連接 http://localhost/   如更改埠號(http://localhost:3000/)
     
     <Note>
     你看到的是 Lab_AJAX_Node.js/public/index.html
@@ -169,7 +175,7 @@ node app.js
 5.4	儲存檔案，以瀏覽器測試看看。
 
 
-5.5	假設某位工程師將上述功能寫成下列這樣，為什麼無法執行呢?
+5.5	假設某位工程師將上述功能寫成下列這樣，為什麼無法執行呢? //Server端要加上contentType:"application/json"沒加的話，會顯示undefinded
 	<Hint> 提示，請查一下有關於 contentType 的說明。
 	
             $("#postButton").on("click", function() {
@@ -228,8 +234,8 @@ node app.js
             })
 
 
-5.8	參考答案(三)： await promiseObject
-	
+5.8	參考答案(三)： await promiseObject (推薦這個寫法)
+	        // await 只能加在async的函式裡 使用 await 等待一個 Promise 完成
             // 記得要加上 async function()
             $("#postButton").on("click", async function() {
                 var dataToServer = {
@@ -277,7 +283,7 @@ node app.js
 6.  改用 Axios 進行 HTTP 資料交換
 
 
-6.1 在 </heading> 的前一行，加入:
+6.1 在 </head> 的前一行，加入:
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 
