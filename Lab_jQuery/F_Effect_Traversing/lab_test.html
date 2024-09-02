@@ -84,7 +84,8 @@ $(function () {
     // Lab 程式:
     var speciesList = ["狗狗", "貓", "兔兔"];
     // 寫法三: 以each來寫
-    $(".pet").each(function(index , what){ //index那個參數名稱可以任意命名
+    $(".pet").each(function(index,what){ //index那個參數名稱可以任意命名,不能為空
+        console.log(what);
         $(what).data("species",speciesList[index]);
         // alert("what");
         // console.log($(what).prop("src"));
