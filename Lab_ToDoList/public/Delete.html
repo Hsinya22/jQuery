@@ -33,10 +33,29 @@
             />
             <input id="deleteButton" type="button" value="確定" class="btn btn-outline-danger" /> |
             <a href="/index.html" class="btn btn-outline-info">取消</a>
+        </form>
     </div>
 
 
     <script>
+        var id = sessionStorage.getItem("id");
+        var url =  `http://localhost:3000/todo/item/${id}`;
+        // console.log(id,url); // 確認網址id和前面點擊的id一樣
+        $.get(url , function(e){
+            $("#Name").text(e.title),
+            $("#isComplete").prop("checked",e.isComplete)
+        }) // 當完成這行，可以確認項目名稱和是否已完工的核取方塊有無一樣
+        $("#deleteButton").on("click",function(){
+            // var toWhere = `http://localhost:3000/todo/delete/${id}`;
+            var toWhere = `http://localhost:3000/todo/delete/${sessionStorage.getItem("id")}`;
+            // console.log(toWhere); // 確認連結是否正確
+            
+            var result = $.ajax({
+                type:"delete",
+                url:toWhere
+            })
+            window.location = "/";
+        })
 
     </script>
     

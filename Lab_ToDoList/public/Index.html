@@ -80,18 +80,33 @@
                     </td>
                     <td>
                         <span class="float-right">
-                            <a href="edit.html" class="btn btn-outline-primary btn-sm">編輯</a> |
-                            <a href="delete.html" class="btn btn-outline-danger btn-sm">刪除</a>
+                            <a href="edit.html" data-id="${todoTable[i].todoTableId}" onclick="onEdit(${todoTable[i].todoTableId})" class="editButton btn btn-outline-primary btn-sm">編輯</a> |
+                            <a href="delete.html" data-id="${todoTable[i].todoTableId}" class="delButton btn btn-outline-danger btn-sm">刪除</a>
                         </span>
                     </td>
                 </tr>
                 
-               `
+               `;
             $("#jobList tbody").append(trHTML);
          }
+         // 選取編輯按鈕
+         $(".editButton").on("click",function(){
+            sessionStorage.setItem("id" , $(this).data("id")) // setItem("key", value) ;這裡的data("id")是上方確認按鈕裡的data-id
+            // alert("ok, ver 3.1 ,id =" + $(this).data("id")); // todoTableId 會顯示undefined
+         })
+        //  
+        $(".delButton").on("click",function(){
+            sessionStorage.setItem("id" , $(this).data("id"))
+            // alert("ok, id ="+ $(this).data("id")) //測試有無選到要的id
+        })
+
     })
 
     }
+
+    // function onEdit(e){
+    //     alert("Lab:edit id ="+ e)
+    // }
    
 
 

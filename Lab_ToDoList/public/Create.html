@@ -23,6 +23,7 @@
                 </div>
                 <div class="form-group">
                     <input id="okButton" type="button" value="確定" class="btn btn-outline-primary" /> | 
+                    <!-- type = "submit"，瀏覽器幫你送資料，表單送回結果或報告；type="button" 自己送資料  -->
                     <a href="/index.html" class="btn btn-outline-info">取消</a>
                 </div>
             </form>
@@ -33,5 +34,24 @@
 </div>
 
 <script>
-    
+    $("#okButton").on("click",async function(){
+        // console.log("ok");
+        var datatoServer = {
+            title:$("#Name").prop("value"), // .val()
+            isComplete:$("#IsComplete").prop("checked")? 1:0
+        }
+        var result = await $.ajax({
+            type:"post",
+            url:"http://localhost:3000/todo/create",
+            contentType:"application/json",
+            data:JSON.stringify(datatoServer)
+        })
+        // console.log(result);
+
+        // 跳轉回首頁 
+        // window.location = "http://localhost:3000/index.html"; // 這個寫法也可以
+        window.location = "/";
+        
+    })
+
 </script>

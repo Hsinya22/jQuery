@@ -36,8 +36,14 @@
 </div>
  
 <script>
+// $("#accordion").accordion();
 
-
+	$("#accordion").accordion({ 
+    active: 2, // 排列第二的物件先展開
+    animate:200, // 開合所需的時間
+    collapsible: true, // true 可以全部作開合 | false 會有一個頁面一值開啟
+    // event: "mouseover" // 滑鼠碰到就打開
+   });
 
 </script>
  

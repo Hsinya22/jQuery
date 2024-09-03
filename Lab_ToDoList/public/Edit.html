@@ -35,7 +35,29 @@
 
 
 <script>
-   
+    var id = sessionStorage.getItem("id");
+    console.log("ready to edit :" + id);
+    var url = `http://localhost:3000/todo/item/${id}`;
+    $.get(url, function(e){
+        $("#Name").prop("value", e.title); //讓項目名稱顯示到你點擊的那個
+        $("#IsComplete").prop("checked", e.isComplete) //來自server端 isComplete那個選項
+    })
+    $("#okButton").on("click",async function(){
+        // alert("ok")
+        var dataToServer = {
+            todoTableId:sessionStorage.getItem("id"),
+            title:$("#Name").prop("value"),
+            isComplete:$("#IsComplete").prop("checked")? 1:0
+        }
+        var result = await $.ajax({
+            type:"put",
+            url:"http://localhost:3000/todo/item",
+            contentType:"application/json",
+            data:JSON.stringify(dataToServer)
+        })
+        // console.log(dataToServer);
+        window.location = "/";
+    })
 </script>
 
 </div>
